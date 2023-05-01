@@ -1,21 +1,58 @@
 [tool.poetry]
-name = "frontend-carbon"
+name = "frontend-co2"
 version = "0.1.0"
-description = ""
+description = "Gathering data for front-end energy usage model."
 authors = ["Owen Barton <owen@owenbarton.com>"]
-license = "GPL-3"
+license = "AGPL-3"
 readme = "README.md"
-packages = [{include = "frontend_carbon"}]
 
 [tool.poetry.dependencies]
+
 python = "^3.10"
 playwright = "^1.32.1"
 pantomime = "^0.6.0"
 
-
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.2.0"
+
+# Formatters
+black = "^22.1"
+tomli = "*" # missing 'black' dependency
+isort = "^5.10"
+
+# Linters
+mypy = "^1.0"
+pydocstyle = "^6.1"
+pylint = "~2.15"
+wrapt = "*" # missing 'pylint' dependency
+
+# Tooling
+pyinstaller = "*"
+sniffer = "*"
+MacFSEvents = { version = "*", platform = "darwin" }
+pync = { version = "*", platform = "darwin" }
+ipython = "^7.12.0"
+
+[tool.poetry.scripts]
+
+frontend-co2 = "main.cli:main"
+
+[tool.black]
+
+quiet = true
+
+[tool.isort]
+
+profile = "black"
+
+[tool.mypy]
+
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+
+cache_dir = ".cache/mypy/"
 
 [build-system]
-requires = ["poetry-core"]
+
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
