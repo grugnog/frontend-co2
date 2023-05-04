@@ -8,7 +8,9 @@ from playwright.sync_api import sync_playwright
 user_dir = sys.argv[1]
 domain = sys.argv[2]
 loops = sys.argv[3]
-urls = json.loads(sys.argv[4])
+# Retrieve URL list as JSON file, since it can get long
+with open("tmp.json", encoding="utf-8") as f:
+    urls = json.load(f)
 
 
 def handle_route(route):
